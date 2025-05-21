@@ -12,7 +12,6 @@ const cartItems = document.querySelector(".cart-items");
 
 
 
-
 function openCart() {
     cartPanel.classList.add("open");
     cartOverlay.classList.add("show");
@@ -92,18 +91,19 @@ toggleCloseButt.addEventListener("click", closeMenu);
 // =======================================================
 
 
+import { itemChosen,addingButton } from '../../src/index';
 
 
-let arrCartItems = [];
-
-const object1 = {
-    id: "IOc3fBTPLXSjkPJ7OAR7",
-    price: 1500,
-    discount: 60,
+let arrCartItems = [{
+    id: "IOc3fBTOAR7",
+    price: 1300,
+    discount: 40,
     title: "Snickers",
-    sizes: "L",
+    sizes: "M",
+    quantity:2,
     url: "https://res.cloudinary.com/denqwkum6/image/upload/v1747405561/akbwkfmgkfwzdin3p3ba.jpg"
-};
+}];
+
 
 function idExistsInArray(id, array) {
     return array.some(item => item.id === id);
@@ -111,19 +111,19 @@ function idExistsInArray(id, array) {
 
 
 
-function addToCart(object1) {
-    if (idExistsInArray(object1.id, arrCartItems)) {
-        const existingItem = arrCartItems.find(item => item.id === object1.id);
+function addToCart(itemChosen) {
+    if (idExistsInArray(itemChosen.id, arrCartItems)) {
+        const existingItem = arrCartItems.find(item => item.id === itemChosen.id);
         existingItem.quantity += 1;
     } else {
-        object1.quantity = 1;
-        arrCartItems.push(object1);
+        itemChosen.quantity = 1;
+        arrCartItems.push(itemChosen);
     }
 }
 
 
-
-addToCart(object1);
+/*<button class="add-to-cart" id="add-to-cart-pop">ADD TO CART</button>*/ 
+addToCart(itemChosen);
 
 
 function renderItems() {
@@ -162,10 +162,10 @@ function renderItems() {
 
   calculateTotal();
 
-  attachQuantityListeners();
+  quantityButtons();
 }
 
-function attachQuantityListeners() {
+function quantityButtons() {
   const increaseButtons = document.querySelectorAll('.increase-btn');
   const decreaseButtons = document.querySelectorAll('.decrease-btn');
 
@@ -210,6 +210,22 @@ function calculateTotal() {
 }
 
 renderItems();
+
+
+
+
+function getIdOfElement(){
+
+}
+
+
+function removeItemFromCart(targetId) {
+    const index = products.findIndex(item => item.id == targetId);
+    if (index !== -1) {
+        products.splice(index, 1);
+    }
+}
+
 
 
 

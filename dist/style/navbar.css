@@ -655,7 +655,7 @@ nav {
 .quantity-box span {
   width: 30px;
   text-align: center;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 
@@ -663,7 +663,7 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #444;
+  background-color: #ffffff;
   display: none;
   list-style: none;
   min-width: 150px;
@@ -672,7 +672,7 @@ nav {
 .dropdown-menu li a {
   display: block;
   padding: 10px;
-  color: white;
+  color: black;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -686,7 +686,7 @@ nav {
 .edit-btn {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 1rem;
   color: #2196f3;
   cursor: pointer;
   padding: 4px 8px;

@@ -256,8 +256,10 @@ function addToFav(id, e) {
 
 }
 
-    let itemChosen ={};
-    console.log(itemChosen);
+
+
+
+    export let itemChosen ={};
     
    function popUpMenuForShopping(idOfElement) {
     document.querySelector('.pop-up').classList.add('open');
@@ -266,6 +268,8 @@ function addToFav(id, e) {
     
    }
 
+
+export let addingButton = document.getElementById("add-to-cart-pop");
    
    function addDataToPopup(id,idOfElement){
         let popupContainer = document.getElementById("pop-up-shopping");
@@ -329,8 +333,8 @@ function addToFav(id, e) {
             colorsContainer.innerHTML += imageToappend;
             document.getElementById(`previewImage-${id}-${j}`).src =thumbnailsCropped;
         }
-        let addingBotton = document.getElementById("add-to-cart-pop");
-        addingBotton.addEventListener("click",()=>{
+        
+        addingButton.addEventListener("click",()=>{
             closePopup();
             itemChosen= jackets[id];
             console.log(itemChosen);
@@ -349,9 +353,22 @@ function addToFav(id, e) {
     document.querySelector('.pop-up-overlay').classList.remove('open');
    }
 
-
 // button to scroll to top
  initScrollToTop();
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 // document.addEventListener('DOMContentLoaded', function() {
 
 

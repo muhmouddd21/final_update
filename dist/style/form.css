@@ -1,0 +1,177 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding: 20px;
+  background: white;
+  margin: 1rem auto 1rem;
+}
+
+.register-form{
+  min-width: 30rem;
+  padding: 1rem;
+}
+
+
+.registration-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+
+
+.form-input {
+  width: 100%;
+  padding: 16px 12px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.form-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #999;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  background: white;
+  padding: 0 4px;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  color: black;
+}
+
+.form-label .required {
+  color: red;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  border: none;
+
+  cursor: pointer;
+  font-weight: bold;
+}
+.email-btn {
+  margin-top: 4px;
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  align-items: center;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  color: white;
+  display: inline-block;
+}
+
+.email-btn:hover .icon {
+  transform: scale(1.1);
+  background: conic-gradient(
+    from 270deg,
+    #ea4335 0deg 120deg,
+    #34a853 120deg 240deg,
+    #4285f4 240deg 360deg
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.register-btn:hover {
+  background-color: rgb(50, 49, 49);
+}
+.email-btn:hover {
+  background-color: rgb(50, 49, 49);
+}
+
+.login-text {
+  text-align: center;
+  margin-top: 20px;
+  color: #555;
+}
+
+.login-text a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bi-x-lg {
+  cursor: pointer;
+  transition: transform 0.6s ease;
+}
+
+.bi-x-lg:hover {
+  transform: rotate(360deg);
+}
+
+.hidden {
+  display: none;
+}
+/* Auth message styling */
+#error-message,
+#auth-message {
+  display: none;
+  margin-top: 15px;
+  padding: 12px;
+  border: 1px solid #e74c3c;
+  background-color: #fceaea;
+  color: #e74c3c;
+  font-size: 14px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+#error-message.error,
+#auth-message.error {
+  display: block;
+}
+
+
+.register-form{
+  min-width: 30rem;
+  padding: 1rem;
+}
+
+
+@media (max-width: 500px){
+  .register-form{
+  min-width: 0;
+  padding: 0;
+  margin: auto;
+}
+
+}

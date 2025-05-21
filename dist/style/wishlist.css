@@ -1,0 +1,32 @@
+
+.empty-wish-list {
+    line-height: 2rem;
+    letter-spacing: 0.05rem;
+    font-size: 1.15rem;
+    margin: 2rem;
+}
+
+.empty-wish-list strong {
+    text-transform: uppercase;
+}
+
+.empty-wish-list button {
+    display: block;
+    padding: 0.7rem;
+    width: 18rem;
+    font-size: 1.2rem;
+    margin: 3rem auto 2rem;
+    background-color: var(--button-background);
+    color: var(--button-color);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+
+.btn-continue-shopping:hover{
+    background-color: rgb(50, 49, 49);
+}
+
+
+

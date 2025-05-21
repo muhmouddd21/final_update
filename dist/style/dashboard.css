@@ -1,0 +1,104 @@
+
+body {
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+}
+        
+#sidebar {
+    min-height: 100vh;
+    background-color: #343a40;
+    color: #fff;
+    transition: all 0.3s;
+    position: fixed;
+    z-index: 1000;
+    width: 15.625rem;
+}
+
+#sidebar.collapsed {
+    margin-left: -15.625rem;
+}
+
+#sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin: 5px 15px;
+    transition: all 0.3s;
+}
+
+#sidebar .nav-link:hover,
+#sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+#sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.content {
+    padding: 30px;
+    transition: all 0.3s;
+    margin-left: 15.625rem;
+}
+
+.content.expanded {
+    width: 100%;
+    margin-left: 0;
+}
+        
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    font-weight: 600;
+}
+        
+.table-container {
+    overflow-x: auto;
+}  
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+.product-image {
+    width: 3.75rem;
+    height: 3.75rem;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+        #sidebar {
+            width: 9.375rem;
+            height: 100%;
+        }
+        .content {
+            margin-left: 8rem;
+            margin-right: 0;
+            width: 70%;
+        }
+    .add-btn {
+        padding: 3px !important;
+    }
+    
+    .product-header {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .card {
+        width: 108%;
+    }
+}
+    

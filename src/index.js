@@ -227,6 +227,36 @@ function addToFav(id, e) {
     }
 }
 
+
+
+
+
+    export let itemChosen ={};
+    
+   function popUpMenuForShopping(idOfElement) {
+    document.querySelector('.pop-up').classList.add('open');
+    document.querySelector('.pop-up-overlay').classList.add('open');
+    addDataToPopup(idOfElement);
+    
+   }
+
+
+export let addingButton = document.getElementById("add-to-cart-pop");
+   
+   function addDataToPopup(id,idOfElement){
+        let popupContainer = document.getElementById("pop-up-shopping");
+   
+        let salePrice =calculateDiscount(jackets[id].price,jackets[id].discount);  
+        let originalPrice =jackets[id].price;
+         let saving = originalPrice - salePrice ;
+
+
+
+        let data = `
+                <button class="close-btn" id="close-btn-popUp" >×</button>
+                <div class="data">
+                    <h3 class="product-title-pop" id="product-title-pop-${id}">${jackets[id].title}</h3>
+=======
 // Shows popup menu for product details
 function popUpMenuForShopping(id) {
     document.querySelector('.pop-up').classList.add('open');
@@ -234,9 +264,32 @@ function popUpMenuForShopping(id) {
     addDataToPopup(id);
 }
 
+
 // Adds product data to popup
 function addDataToPopup(id) {
     
+
+            `
+            sizesContainer.innerHTML += sizeToAppend; 
+        
+        }
+        let colorsContainer =document.getElementById(`colors-product-pop`);
+        for(let j=0; j <jackets[id].urls.length; j++){
+            const thumbnailsUrl = jackets[id].urls[j];
+            const thumbnailsCropped = transformImageUrl(thumbnailsUrl, 300, 300);
+
+            let imageToappend =`
+                <img class="thumbnail-pop" id="previewImage-${id}-${j}" ></img>
+            `
+            colorsContainer.innerHTML += imageToappend;
+            document.getElementById(`previewImage-${id}-${j}`).src =thumbnailsCropped;
+        }
+        
+        addingButton.addEventListener("click",()=>{
+            closePopup();
+            itemChosen= jackets[id];
+            console.log(itemChosen);
+=======
     let popupContainer = document.getElementById("pop-up-shopping");
     if (!products[id]) return;
 
@@ -264,6 +317,7 @@ function addDataToPopup(id) {
         </div>
         <button class="add-to-cart" id="add-to-cart-pop">ADD TO CART</button>
     `;
+
     
     popupContainer.innerHTML = data;
     
@@ -294,7 +348,126 @@ function addDataToPopup(id) {
 function closePopup() {
     document.querySelector('.pop-up').classList.remove('open');
     document.querySelector('.pop-up-overlay').classList.remove('open');
-}
+
+   }
+
+// button to scroll to top
+ initScrollToTop();
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+// document.addEventListener('DOMContentLoaded', function() {
+
+
+//     // Add new size field
+//     document.getElementById('addSizeBtn').addEventListener('click', function() {
+//         const container = document.getElementById('sizesContainer');
+//         const newSizeItem = document.createElement('div');
+//         newSizeItem.className = 'size-item-m';
+//         newSizeItem.innerHTML = `
+//             <input type="text" name="sizeValue[]" placeholder="Size value (e.g., M)">
+//             <button type="button" class="remove-btn-m">Remove</button>
+//         `;
+//         container.appendChild(newSizeItem);
+        
+//         // Add event listener to the new remove button
+//         newSizeItem.querySelector('.remove-btn-m').addEventListener('click', function() {
+//             container.removeChild(newSizeItem);
+//         });
+//     });
+
+
+//     // Add new URL field
+//     document.getElementById('addUrlBtn').addEventListener('click', function() {
+//         const container = document.getElementById('urlsContainer');
+//         const newUrlItem = document.createElement('div');
+//         newUrlItem.className = 'url-item-m';
+//         newUrlItem.innerHTML = `
+//             <input type="text" name="urlKey[]" placeholder="URL key (e.g., B)">
+//             <input type="text" name="urlValue[]" placeholder="Image URL">
+//             <button type="button" class="remove-btn-m">Remove</button>
+//         `;
+//         container.appendChild(newUrlItem);
+        
+//         // Add event listener to the new remove button
+//         newUrlItem.querySelector('.remove-btn-m').addEventListener('click', function() {
+//             container.removeChild(newUrlItem);
+//         });
+//     });
+
+//     // Add event listeners to existing remove buttons
+//     document.querySelectorAll('#sizesContainer .remove-btn-m').forEach(btn => {
+//         btn.addEventListener('click', function() {
+//             this.closest('.size-item-m').remove();
+//         });
+//     });
+
+//     document.querySelectorAll('#urlsContainer .remove-btn-m').forEach(btn => {
+//         btn.addEventListener('click', function() {
+//             this.closest('.url-item-m').remove();
+//         });
+//     });
+
+//     let submitBtn = document.getElementById("submit-btn-m");
+//         if (submitBtn) {
+//             submitBtn.addEventListener("click", function() {
+
+//             });
+//         }
+// })
+
+// document.getElementById('productForm').addEventListener('submit', function(e) {
+//     e.preventDefault();
+    
+ 
+//     const formData = {
+//         title: document.getElementById('title').value,
+//         discount: document.getElementById('discount').value,
+//         price: document.getElementById('price').value,
+//         sizes: [],
+//         urls: []
+//     };
+
+//     // Collect sizes
+//     document.querySelectorAll('#sizesContainer .size-item-m').forEach(item => {
+//         const value = item.querySelector('input[name="sizeValue[]"]').value;
+//         if (value) {
+//             formData.sizes.push(value) ;
+//         }
+//     });
+
+//     // Collect URLs
+//     document.querySelectorAll('#urlsContainer .url-item-m').forEach(item => {
+//         const key = item.querySelector('input[name="urlKey[]"]').value;
+//         const value = item.querySelector('input[name="urlValue[]"]').value;
+//         if (key && value) {
+//             formData.urls[key] = value;
+//         }
+//     });
+
+//     addDoc(colRef,formData)
+//     .then(()=>{
+//         productForm.reset();
+//     })
+  
+// });
+
+
+
+
+
+
 
 // Helper function to calculate discounted price
 function calculateDiscount(price, discount) {

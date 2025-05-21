@@ -794,3 +794,22 @@ input[type="number"] {
     flex-grow: 1;
     margin-right: 10px;
 }
+.card-m img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+.thumbnail {
+    max-width: 60px;
+    height: auto;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.thumbnail-pop {
+    max-width: 100px;
+    height: auto;
+    margin: 5px;
+}

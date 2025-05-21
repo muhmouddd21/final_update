@@ -1,7 +1,7 @@
 import {db,collection,getDocs,addDoc} from './config.js'
 import {initScrollToTop} from './scrollToup.js'
 
-    let productToBeAdded = 'shoes';
+    let productToBeAdded = 'jackets';
 
    const colRef = collection(db,productToBeAdded);
 
@@ -23,16 +23,17 @@ import {initScrollToTop} from './scrollToup.js'
 
 
 //    get the data from firebase
-    let shoes =[];
+    let jackets =[];
    getDocs(colRef)
    .then((snapshot)=>{
         snapshot.docs.forEach((doc)=>{
-            shoes.push({...doc.data(),id: doc.id});
+            jackets.push({...doc.data(),id: doc.id});
         })
     // })
+        console.log(jackets);
+        
 
-
-    let noOfProducts=4;                 //change the number of products to appear from here
+    let noOfProducts=5;                 //change the number of products to appear from here
     createStructureOfCards(noOfProducts);
 
 
@@ -70,27 +71,27 @@ import {initScrollToTop} from './scrollToup.js'
    
 
     for(let i=0; i<noOfProducts; i++){ 
-        const originalUrl = shoes[i].url[0];
+        const originalUrl = jackets[i].urls[0];
         const croppedUrl = transformImageUrl(originalUrl, 300, 300);
 
         saveOrginalSrcOfCards(croppedUrl,i);  //  saving the source of the photos so when the mouseleave the src of the main photos comeback
 
         document.getElementById(`previewImage-${i}`).src = croppedUrl;
 
-        for(let j=1; j <shoes[i].url.length; j++){
-            const thumbnailsUrl = shoes[i].url[j];
+        for(let j=1; j <jackets[i].urls.length; j++){
+            const thumbnailsUrl = jackets[i].urls[j];
             console.log(thumbnailsUrl);
             
             const thumbnailsCropped = transformImageUrl(thumbnailsUrl, 300, 300);
             document.getElementById(`previewImage-${i}-${j}`).src =thumbnailsCropped;
         }
-        document.getElementById(`product-title-${i}`).innerText =shoes[i].title;
+        document.getElementById(`product-title-${i}`).innerText =jackets[i].title;
      
 
-        document.getElementById(`discount-badge-${i}`).innerText +=`-${shoes[i].discount}%`;
+        document.getElementById(`discount-badge-${i}`).innerText +=`-${jackets[i].discount}%`;
 
-        document.getElementById(`sale-price-${i}`).innerText +=`LE ${calculateDiscount(shoes[i].price,shoes[i].discount)}.00`;
-        document.getElementById(`original-price-${i}`).innerText = `LE ${shoes[i].price}.00`;
+        document.getElementById(`sale-price-${i}`).innerText +=`LE ${calculateDiscount(jackets[i].price,jackets[i].discount)}.00`;
+        document.getElementById(`original-price-${i}`).innerText = `LE ${jackets[i].price}.00`;
 
        
     }
@@ -141,8 +142,9 @@ import {initScrollToTop} from './scrollToup.js'
 
 
 
-
-            for(let j=1;j<shoes[i].url.length; j++){ // j starts with 1 because 0 is gonna be the main image
+            console.log(jackets[i].urls.length);
+            
+            for(let j=1;j<jackets[i].urls.length; j++){ // j starts with 1 because 0 is gonna be the main image
                 let thumbnailContainer=document.getElementById(`thumbnail-container-${i}`);
                 let thumbToAppend = `
                     <img class="thumbnail" id="previewImage-${i}-${j}" >
@@ -150,10 +152,10 @@ import {initScrollToTop} from './scrollToup.js'
                 thumbnailContainer.innerHTML += thumbToAppend; 
 
             }
-            for(let k=0;k<shoes[i].sizes.length; k++){ 
+            for(let k=0;k<jackets[i].sizes.length; k++){ 
                 let sizesContainer=document.getElementById(`sizes-${i}`);
                 let sizeToAppend = `
-                    <span class="size-elem" id="size-${i}-${k}"> ${shoes[i].sizes[k]} </span>
+                    <span class="size-elem" id="size-${i}-${k}"> ${jackets[i].sizes[k]} </span>
                 `
                 sizesContainer.innerHTML += sizeToAppend; 
 
@@ -233,12 +235,12 @@ import {initScrollToTop} from './scrollToup.js'
    let fav =new Set();
   
    function addToCart(id,e) {
-        let idOfElement = shoes[id].id;
+        let idOfElement = jackets[id].id;
         popUpMenuForShopping(id,idOfElement);
 
    }
 function addToFav(id, e) {
-    const idOfElement = shoes[id].id;
+    const idOfElement = jackets[id].id;
     const iconDiv = e.currentTarget;
     const icon = iconDiv.querySelector("i");
 
@@ -254,8 +256,9 @@ function addToFav(id, e) {
 
 }
 
-    let cartChosen ={};
-
+    let itemChosen ={};
+    console.log(itemChosen);
+    
    function popUpMenuForShopping(idOfElement) {
     document.querySelector('.pop-up').classList.add('open');
     document.querySelector('.pop-up-overlay').classList.add('open');
@@ -267,8 +270,8 @@ function addToFav(id, e) {
    function addDataToPopup(id,idOfElement){
         let popupContainer = document.getElementById("pop-up-shopping");
    
-        let salePrice =calculateDiscount(shoes[id].price,shoes[id].discount);  
-        let originalPrice =shoes[id].price;
+        let salePrice =calculateDiscount(jackets[id].price,jackets[id].discount);  
+        let originalPrice =jackets[id].price;
          let saving = originalPrice - salePrice ;
 
 
@@ -276,7 +279,7 @@ function addToFav(id, e) {
         let data = `
                 <button class="close-btn" id="close-btn-popUp" >×</button>
                 <div class="data">
-                    <h3 class="product-title-pop" id="product-title-pop-${id}">${shoes[id].title}</h3>
+                    <h3 class="product-title-pop" id="product-title-pop-${id}">${jackets[id].title}</h3>
 
                 </div>
                 <div class="price">
@@ -306,18 +309,18 @@ function addToFav(id, e) {
         popupContainer.innerHTML = data;
         
         let sizesContainer=document.getElementById(`sizes-pop-up`);
-        for(let k=0;k<shoes[id].sizes.length; k++){ 
+        for(let k=0;k<jackets[id].sizes.length; k++){ 
             
             let sizeToAppend = `
-                    <div class="size-option"> ${shoes[id].sizes[k]}</div>
+                    <div class="size-option"> ${jackets[id].sizes[k]}</div>
     
             `
             sizesContainer.innerHTML += sizeToAppend; 
         
         }
         let colorsContainer =document.getElementById(`colors-product-pop`);
-        for(let j=0; j <shoes[id].url.length; j++){
-            const thumbnailsUrl = shoes[id].url[j];
+        for(let j=0; j <jackets[id].urls.length; j++){
+            const thumbnailsUrl = jackets[id].urls[j];
             const thumbnailsCropped = transformImageUrl(thumbnailsUrl, 300, 300);
 
             let imageToappend =`
@@ -329,8 +332,8 @@ function addToFav(id, e) {
         let addingBotton = document.getElementById("add-to-cart-pop");
         addingBotton.addEventListener("click",()=>{
             closePopup();
-            cartChosen= shoes[id];
-            console.log(cartChosen);
+            itemChosen= jackets[id];
+            console.log(itemChosen);
     
         })
 
